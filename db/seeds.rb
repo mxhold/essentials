@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+items = [
+  "Bed",
+  "Snowboard",
+  "Printer",
+  "Speakers",
+  "Headphones",
+  "KitchenAid mixer",
+  "Old MacBook Pro",
+  "MacBook Pro",
+  "Broken desktop computer",
+  "Toothbrush",
+ ]
+
+ items.each do |item_name|
+   Item.create!(name: item_name)
+ end
