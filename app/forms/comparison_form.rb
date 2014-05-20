@@ -29,15 +29,15 @@ class ComparisonForm
   end
 
   def submit_title
-    ["Vote", "Go", "Do it", "Engage", "Make it so", "Make judgement"]
+    ["Vote", "Go", "Do it", "Engage", "Make it so", "Make judgement"].sample
   end
 
   def submitting_title
-    ["Voting", "Going", "Doing it", "Engaging", "Making it so", "Making fudgemint"]
+    ["Voting", "Going", "Doing it", "Engaging", "Making it so"].sample
   end
 
   def neutral_title
-    ["No preference", "Hard to say", "Meh", "Dunno", "idk", "w/e"]
+    ["No preference", "Hard to say", "Meh", "Dunno", "idk", "w/e"].sample
   end
 
   private

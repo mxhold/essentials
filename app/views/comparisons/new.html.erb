@@ -40,7 +40,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit @comparison_form.submit_title,  disabled: true, :data => { disable_with: @comparison_form.submitting_title } %>
+      <%= f.submit @comparison_form.submit_title,  disabled: true, :data => { disable_with: @comparison_form.submitting_title + "..." } %>
     </div>
   </section>
 <% end %>
