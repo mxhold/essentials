@@ -1,0 +1,91 @@
+.comparison_choices {
+  margin: 50px auto;
+  width: 400px;
+
+  .comparand {
+    font-family: "Open Sans";
+    font-size: 1.5rem;
+    width: 400px;
+    height: 80px;
+    background-color: #F2F2F2;
+    margin-bottom: 5px;
+    text-align: center;
+    line-height: 80px;
+    &:hover {
+      background-color: #ccc;
+      color: #fff;
+    }
+  }
+
+
+
+
+  input:checked + div {
+    color: white;
+    background-color: #2BD997;
+
+    &:hover {
+      background-color: #2BD997;
+    }
+
+    &.draw {
+      background-color: #ccc;
+      .check {
+        background-color: #979797;
+        &:before {
+          content: "\f11a";
+        }
+      }
+    }
+
+    .check {
+      font-size: 2.5rem;
+      display: inline;
+      height: 80px;
+      width: 90px;
+      float: left;
+      line-height: 80px;
+      background-color: #21A672;
+      &:before {
+        content: "\f00c";
+        font-family: FontAwesome;
+      }
+    }
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  .check {
+    transition: all 0.15s;
+    width: 30px;
+  }
+
+  .actions {
+    input[type=submit] {
+      border: none;
+      padding:0!important;
+      font-family: "Open Sans";
+      font-size: 1.5rem;
+      width: 400px;
+      height: 80px;
+      color: white;
+      background-color: #ccc;
+      margin-bottom: 5px;
+      text-align: center;
+      line-height: 80px;
+
+      &:enabled {
+        background-color: #209CFF;
+        transition: all 1.5s;
+        &:hover {
+          transition-duration: 0.5s;
+          background-color: #1D58E8;
+        }
+      }
+    }
+  }
+
+
+}

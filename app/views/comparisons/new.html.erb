@@ -1,0 +1,46 @@
+<%= form_for(@comparison_form, as: :comparison, url: comparisons_path) do |f| %>
+  <% if @comparison_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comparison_form.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @comparison_form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <section class="comparison_choices">
+    <%= f.label :winning_item_id, value: @comparison_form.items.first.id do %>
+    <%= f.radio_button :winning_item_id, @comparison_form.items.first.id %>
+      <div class="comparand">
+        <div class="check">
+        </div>
+        <%= @comparison_form.items.first %>
+      </div>
+    <% end %>
+
+    <%= f.label :winning_item_id, value: @comparison_form.items.last.id do %>
+    <%= f.radio_button :winning_item_id, @comparison_form.items.last.id %>
+      <div class="comparand">
+        <div class="check">
+        </div>
+        <%= @comparison_form.items.last %>
+      </div>
+    <% end %>
+
+    <%= f.label :winning_item_id, value: 0 do %>
+    <%= f.radio_button :winning_item_id, 0 %>
+      <div class="comparand draw">
+        <div class="check">
+        </div>
+        <%= @comparison_form.neutral_title %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit @comparison_form.submit_title,  disabled: true, :data => { disable_with: @comparison_form.submitting_title } %>
+    </div>
+  </section>
+<% end %>
