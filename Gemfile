@@ -12,6 +12,8 @@ gem 'font-awesome-sass'
 
 group :development do
   gem 'spring'
+  gem 'guard'
+  gem 'guard-rspec', '~> 4.2.8'
 end
 
 group :development, :test do
@@ -21,4 +23,5 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec', '~> 3.0.0.beta2' # workaround from guard-rspec, see: https://github.com/guard/guard-rspec/pull/236
 end
