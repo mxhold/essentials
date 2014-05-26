@@ -7,9 +7,9 @@ class ComparisonsController < ApplicationController
 
   def create
     @comparison_form = ComparisonForm.new(comparison_params)
-    @comparison_form.save
+    flash[:notice] = 'Comparison successfully created.' if @comparison_form.save
 
-    respond_with @comparison_form, location: items_url, notice: 'Comparison successfully created.'
+    respond_with @comparison_form, location: items_url
   end
 
   private
