@@ -1,7 +1,6 @@
 TODO
 ====
 
-- Refactor comparisons.coffee to not be global
 - Refactor `ComparisonForm#get_items` to get random items
 - Add link to create comparisons
 - Review tests
