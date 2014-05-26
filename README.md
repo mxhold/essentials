@@ -1,7 +1,6 @@
 TODO
 ====
 
-- Add link to create comparisons
 - Review tests
 - Redirect to new comparison after submitting
 - Add keyboard shortcuts for comparing
