@@ -1,7 +1,6 @@
 TODO
 ====
 
-- Refactor `ComparisonForm#get_items` to get random items
 - Add link to create comparisons
 - Review tests
 - Redirect to new comparison after submitting

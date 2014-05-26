@@ -55,6 +55,6 @@ class ComparisonForm
   end
 
   def get_items
-    [Item.find(1), Item.find(2)]
+    Item.find(Item.pluck(:id).sample(2))
   end
 end
