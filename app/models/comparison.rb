@@ -1,49 +1,46 @@
 class Comparison < ActiveRecord::Base
-  belongs_to :winning_comparand, class_name: 'Comparand'
-  has_one :winning_item, through: :winning_comparand, class_name: 'Item', source: :item
-  has_many :comparands
+  belongs_to :item1, class_name: 'Item'
+  belongs_to :item2, class_name: 'Item'
 
-  validate :must_have_exactly_two_comparands
-  validate :winner_must_be_one_of_comparands
+  validates :item1, :item2, presence: true
+  validates :result, inclusion: { 
+    in: [0, 1, 2], 
+    message: "is not a valid result"
+  }
+
+  validate :item1_and_item2_must_be_different
+
+  def winning_item
+    case result
+    when 0
+      nil
+    when 1
+      item1
+    when 2
+      item2
+    end
+  end
+
+  def winning_item=(item)
+    case item
+    when nil
+      self.result = 0
+    when item1
+      self.result = 1
+    when item2
+      self.result = 2
+    end
+  end
 
   def draw?
-    !winning_comparand
-  end
-
-  def item1
-    comparands.first.item
-  end
-
-  def item2
-    comparands.last.item
-  end
-
-  def result
-    case winning_item
-    when nil
-      0
-    when item1
-      1
-    when item2
-      2
-    end
+    result == 0
   end
 
   private
-
-  def must_have_exactly_two_comparands
-    unless comparands.size == 2
-      errors.add(:base, "must have exactly two comparands")
+  
+  def item1_and_item2_must_be_different
+    if item1 == item2
+      errors.add(:base, "items must be different")
     end
-  end
-
-  def winner_must_be_one_of_comparands
-    unless winning_comparand.blank? || comparands.include?(winning_comparand)
-      errors.add(:winning_comparand_id, "must be one of the comparands being compared")
-    end
-  end
-
-  def comparands_include_item?(item)
-    comparands.map(&:item_id).include?(item.id)
   end
 end

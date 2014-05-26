@@ -4,34 +4,34 @@
       <h2><%= pluralize(@comparison_form.errors.count, "error") %> prohibited this item from being saved:</h2>
 
       <ul>
-      <% @comparison_form.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @comparison_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <section class="comparison_choices">
-    <%= f.label :winning_item_id, value: @comparison_form.items.first.id do %>
-    <%= f.radio_button :winning_item_id, @comparison_form.items.first.id %>
+    <%= f.label :winning_item_id, value: @comparison_form.item1.id do %>
+      <%= f.radio_button :winning_item_id, @comparison_form.item1.id %>
       <div class="comparand">
         <div class="check">
         </div>
-        <%= @comparison_form.items.first %>
+        <%= @comparison_form.item1 %>
       </div>
     <% end %>
 
-    <%= f.label :winning_item_id, value: @comparison_form.items.last.id do %>
-    <%= f.radio_button :winning_item_id, @comparison_form.items.last.id %>
+    <%= f.label :winning_item_id, value: @comparison_form.item2.id do %>
+      <%= f.radio_button :winning_item_id, @comparison_form.item2.id %>
       <div class="comparand">
         <div class="check">
         </div>
-        <%= @comparison_form.items.last %>
+        <%= @comparison_form.item2 %>
       </div>
     <% end %>
 
     <%= f.label :winning_item_id, value: 0 do %>
-    <%= f.radio_button :winning_item_id, 0 %>
+      <%= f.radio_button :winning_item_id, 0, class: 'draw_option' %>
       <div class="comparand draw">
         <div class="check">
         </div>

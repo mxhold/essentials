@@ -2,15 +2,16 @@ require_relative '../../lib/elo_rating'
 class ComparisonForm
   include ActiveModel::Model
 
-  attr_accessor :items, :comparison
+  attr_accessor :comparison
 
-  delegate :comparands, :errors, :item1, :item2, :result, to: :comparison
+  delegate :errors, :item1, :item2, :result, to: :comparison
 
   def initialize(options = {})
-    @comparison = Comparison.new
-    @items = options.fetch(:items) { get_items }
-    build_comparands
-    self.winning_item_id = options[:winning_item_id]
+    self.comparison = Comparison.new
+    items = options.fetch(:items) { get_items }
+    comparison.item1 = items.first
+    comparison.item2 = items.last
+    self.winning_item_id = options[:winning_item_id] if options[:winning_item_id]
   end
 
   def winning_item_id=(id)
@@ -18,7 +19,11 @@ class ComparisonForm
   end
 
   def winning_item_id
-    comparison.winning_item.id if comparison.winning_item
+    if comparison.winning_item
+      comparison.winning_item.id
+    elsif comparison.draw?
+      0
+    end
   end
 
   def save
@@ -47,12 +52,6 @@ class ComparisonForm
     item1_rating, item2_rating = EloRating.updated_ratings(item1.rating, item2.rating, result)
     item1.update!(rating: item1_rating)
     item2.update!(rating: item2_rating)
-  end
-
-  def build_comparands
-    items.each do |item|
-      comparison.comparands.build(item_id: item.id)
-    end
   end
 
   def get_items
