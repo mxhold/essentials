@@ -24,4 +24,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'rspec', '~> 3.0.0.beta2' # workaround from guard-rspec, see: https://github.com/guard/guard-rspec/pull/236
+  gem 'capybara', github: 'jnicklas/capybara'
 end
