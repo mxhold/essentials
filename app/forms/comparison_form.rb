@@ -1,3 +1,4 @@
+require_relative '../../lib/elo_rating'
 class ComparisonForm
   include ActiveModel::Model
 
