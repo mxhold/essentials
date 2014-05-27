@@ -7,7 +7,7 @@ feature 'Comparison creation' do
     visit new_comparison_path
 
     within '.comparison_choices' do
-      choose('comparison_winning_item_id_0')
+      choose('comparison_result_1')
     end
 
     find('[type=submit]').click

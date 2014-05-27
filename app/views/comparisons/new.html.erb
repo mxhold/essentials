@@ -12,8 +12,9 @@
   <% end %>
 
   <section class="comparison_choices">
-    <%= f.label :winning_item_id, value: @comparison_form.item1.id do %>
-      <%= f.radio_button :winning_item_id, @comparison_form.item1.id %>
+    <%= f.hidden_field :item1_id, value: @comparison_form.item1.id %>
+    <%= f.label :result, value: 1 do %>
+      <%= f.radio_button :result, 1 %>
       <div class="tile-button">
         <div class="check">
         </div>
@@ -21,8 +22,9 @@
       </div>
     <% end %>
 
-    <%= f.label :winning_item_id, value: @comparison_form.item2.id do %>
-      <%= f.radio_button :winning_item_id, @comparison_form.item2.id %>
+    <%= f.hidden_field :item2_id, value: @comparison_form.item2.id %>
+    <%= f.label :result, value: 2 do %>
+      <%= f.radio_button :result, 2 %>
       <div class="tile-button">
         <div class="check">
         </div>
@@ -30,8 +32,8 @@
       </div>
     <% end %>
 
-    <%= f.label :winning_item_id, value: 0 do %>
-      <%= f.radio_button :winning_item_id, 0 %>
+    <%= f.label :result, value: 0 do %>
+      <%= f.radio_button :result, 0 %>
       <div class="tile-button draw">
         <div class="check">
         </div>

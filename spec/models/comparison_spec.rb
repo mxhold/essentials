@@ -37,30 +37,14 @@ describe Comparison do
   describe '#draw?' do
     it 'returns true if there is no winner' do
       comparison = Comparison.new
-      comparison.winning_item = nil
+      comparison.result = 0
       expect(comparison.draw?).to be_truthy
     end
 
     it 'returns false if there is a winner' do
       comparison = Comparison.new
-      item1 = comparison.build_item1
-      comparison.winning_item = item1
+      comparison.result = 1
       expect(comparison.draw?).to be_falsey
-    end
-  end
-
-  describe '#winning_item=' do
-    it 'sets the winning item to nil given nil' do
-      comparison = Comparison.new
-      comparison.winning_item = nil
-      expect(comparison.winning_item).to be_nil
-    end
-
-    it 'sets the winning item given an item' do
-      comparison = Comparison.new
-      item = comparison.build_item1
-      comparison.winning_item = item
-      expect(comparison.winning_item).to eql item
     end
   end
 end

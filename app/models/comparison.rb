@@ -21,23 +21,12 @@ class Comparison < ActiveRecord::Base
     end
   end
 
-  def winning_item=(item)
-    case item
-    when nil
-      self.result = 0
-    when item1
-      self.result = 1
-    when item2
-      self.result = 2
-    end
-  end
-
   def draw?
     result == 0
   end
 
   private
-  
+
   def item1_and_item2_must_be_different
     if item1 == item2
       errors.add(:base, "items must be different")

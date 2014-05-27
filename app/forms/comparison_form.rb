@@ -6,24 +6,9 @@ class ComparisonForm
 
   delegate :errors, :item1, :item2, :result, to: :comparison
 
-  def initialize(options = {})
-    self.comparison = Comparison.new
-    items = options.fetch(:items) { get_items }
-    comparison.item1 = items.first
-    comparison.item2 = items.last
-    self.winning_item_id = options[:winning_item_id] if options[:winning_item_id]
-  end
-
-  def winning_item_id=(id)
-    comparison.winning_item = Item.find_by_id(id)
-  end
-
-  def winning_item_id
-    if comparison.winning_item
-      comparison.winning_item.id
-    elsif comparison.draw?
-      0
-    end
+  def initialize(comparison_params = nil)
+    comparison_params ||= new_comparison_params
+    self.comparison = Comparison.new(comparison_params)
   end
 
   def save
@@ -47,6 +32,14 @@ class ComparisonForm
   end
 
   private
+
+  def new_comparison_params
+    items = get_items
+    {
+      item1: items.first,
+      item2: items.last
+    }
+  end
 
   def update_ratings!(item1, item2, result)
     item1_rating, item2_rating = EloRating.updated_ratings(item1.rating, item2.rating, result)

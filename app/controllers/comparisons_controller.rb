@@ -15,6 +15,6 @@ class ComparisonsController < ApplicationController
   private
 
   def comparison_params
-    params.require(:comparison).permit(:winning_item_id)
+    params.require(:comparison).permit(:item1_id, :item2_id, :result)
   end
 end
