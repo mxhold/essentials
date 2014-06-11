@@ -4,8 +4,4 @@ class Item < ActiveRecord::Base
   def to_s
     name
   end
-
-  def rating
-    self[:rating] || 1000
-  end
 end

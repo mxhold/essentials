@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524122013) do
+ActiveRecord::Schema.define(version: 20140602233047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,17 +19,17 @@ ActiveRecord::Schema.define(version: 20140524122013) do
   create_table "comparisons", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "item1_id"
-    t.integer  "item2_id"
-    t.integer  "result"
+    t.integer  "item1_id",   null: false
+    t.integer  "item2_id",   null: false
+    t.integer  "result",     null: false
   end
 
   add_index "comparisons", ["item1_id"], name: "index_comparisons_on_item1_id", using: :btree
   add_index "comparisons", ["item2_id"], name: "index_comparisons_on_item2_id", using: :btree
 
   create_table "items", force: true do |t|
-    t.string   "name"
-    t.integer  "rating"
+    t.string   "name",                      null: false
+    t.integer  "rating",     default: 1000, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
