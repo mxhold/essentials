@@ -19,10 +19,9 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-debugger'
+  gem 'rspec-rails', '~> 3.0.0'
 end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'rspec', '~> 3.0.0' # workaround from guard-rspec, see: https://github.com/guard/guard-rspec/pull/236
-  gem 'capybara', github: 'jnicklas/capybara'
+group :test do
+  gem 'capybara', '~> 2.3.0'
 end
