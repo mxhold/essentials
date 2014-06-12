@@ -11,4 +11,11 @@ describe Item do
       expect(item.valid?).to be_falsey
     end
   end
+
+  describe '#to_s' do
+    it 'returns the item name' do
+      item = Item.new(name: 'Piano')
+      expect(item.to_s).to eql 'Piano'
+    end
+  end
 end
