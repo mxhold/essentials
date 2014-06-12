@@ -24,4 +24,5 @@ end
 
 group :test do
   gem 'capybara', '~> 2.3.0'
+  gem "codeclimate-test-reporter", require: false
 end
