@@ -11,7 +11,7 @@ feature 'Comparison creation' do
     end
 
     find('[type=submit]').click
-    expect(page).to have_content 'successfully'
+    expect(page).to have_content 'successfully created'
     expect(item1.rating).to eql 1000
     expect(item2.rating).to eql 1000
   end
@@ -26,7 +26,7 @@ feature 'Comparison creation' do
     end
 
     find('[type=submit]').click
-    expect(page).to have_content 'successfully'
+    expect(page).to have_content 'successfully created'
     expect(item1.reload.rating).to eql 1016
     expect(item2.reload.rating).to eql 984
   end
