@@ -47,4 +47,23 @@ describe Comparison do
       expect(comparison.draw?).to be_falsey
     end
   end
+
+  describe '#winning_item' do
+    it 'returns nil if the result is 0' do
+      comparison = Comparison.new(result: 0)
+      expect(comparison.winning_item).to be_nil
+    end
+
+    it 'returns item1 if the result is 1' do
+      item = Item.new(name: 'Piano')
+      comparison = Comparison.new(item1: item, result: 1)
+      expect(comparison.winning_item).to eql item
+    end
+
+    it 'returns item2 if the result is 2' do
+      item = Item.new(name: 'Piano')
+      comparison = Comparison.new(item2: item, result: 2)
+      expect(comparison.winning_item).to eql item
+    end
+  end
 end
