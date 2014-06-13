@@ -4,7 +4,6 @@ TODO
 v0.1.0
 ======
 Test coverage
-- Add license
 - Full test coverage
   - Item update/validations/delete
   - Non-draw comparisons
