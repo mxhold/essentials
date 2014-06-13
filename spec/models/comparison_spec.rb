@@ -17,7 +17,7 @@ describe Comparison do
       expect(comparison.errors).to have_key(:item2)
     end
 
-    it 'is invalid without a result in range' do
+    it 'is invalid without a result between 0 and 2' do
       comparison = Comparison.new
       comparison.result = 3
       comparison.valid?
@@ -35,13 +35,13 @@ describe Comparison do
   end
 
   describe '#draw?' do
-    it 'returns true if there is no winner' do
+    it 'returns true if the result is 0' do
       comparison = Comparison.new
       comparison.result = 0
       expect(comparison.draw?).to be_truthy
     end
 
-    it 'returns false if there is a winner' do
+    it 'returns false if the result is not 0' do
       comparison = Comparison.new
       comparison.result = 1
       expect(comparison.draw?).to be_falsey
