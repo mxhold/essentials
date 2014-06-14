@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  respond_to :html
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
@@ -22,21 +23,16 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(item_params)
+    flash[:notice] = 'Item successfully created.' if @item.save
 
-    if @item.save
-      redirect_to items_url, notice: 'Item was successfully created.'
-    else
-      render :new
-    end
+    respond_with @item, location: items_url
   end
 
   # PATCH/PUT /items/1
   def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
-    else
-      render :edit
-    end
+    flash[:notice] = 'Item was successfully updated.' if @item.update(item_params)
+
+    respond_with @item
   end
 
   # DELETE /items/1
