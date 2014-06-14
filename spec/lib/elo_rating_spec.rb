@@ -5,26 +5,26 @@ describe EloRating do
     before do
       @a_rating = 2000
       @b_rating = 1900
-      @elo_rating = EloRating.new { 10 }
+      @elo_rating = EloRating.new
     end
 
     describe 'returns the updated scores for two players given their ratings and the result of a match' do
       it 'winning' do
         a_updated, b_updated = @elo_rating.updated_ratings(@a_rating, @b_rating, 1)
-        expect(a_updated).to eq 2003
-        expect(b_updated).to eq 1896
+        expect(a_updated).to eq 2008
+        expect(b_updated).to eq 1891
       end
 
       it 'losing' do
         a_updated, b_updated = @elo_rating.updated_ratings(@a_rating, @b_rating, 2)
-        expect(a_updated).to eq 1993
-        expect(b_updated).to eq 1906
+        expect(a_updated).to eq 1984
+        expect(b_updated).to eq 1915
       end
 
       it 'draw' do
         a_updated, b_updated = @elo_rating.updated_ratings(@a_rating, @b_rating, 0)
-        expect(a_updated).to eq 1998
-        expect(b_updated).to eq 1901
+        expect(a_updated).to eq 1996
+        expect(b_updated).to eq 1903
       end
     end
   end

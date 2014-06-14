@@ -1,18 +1,7 @@
 class EloRating
-  def initialize(&k_factor)
-    if k_factor
-      @k_factor = k_factor
-    else
-      @k_factor = Proc.new do |rating|
-        if rating < 2100
-          32
-        elsif 2100 <= rating && rating <= 2400
-          24
-        elsif 2400 < rating
-          16
-        end
-      end
-    end
+  attr_reader :k_factor
+  def initialize(k_factor: 24)
+    @k_factor = k_factor
   end
 
   def self.updated_ratings(a_rating, b_rating, result)
@@ -20,17 +9,11 @@ class EloRating
   end
 
   def updated_ratings(a_rating, b_rating, result)
-    case result
-    when 0 # draw
-      a_score, b_score = 0.5, 0.5
-    when 1 # a wins
-      a_score, b_score = 1, 0
-    when 2 # b wins
-      a_score, b_score = 0, 1
-    end
-    a_updated = updated_rating(a_rating, EloRating.expected_score(a_rating, b_rating), a_score)
-    b_updated = updated_rating(b_rating, EloRating.expected_score(b_rating, a_rating), b_score)
-    return a_updated, b_updated
+    a_actual_score = a_score(result)
+    a_expected_score = EloRating.expected_score(a_rating, b_rating)
+    a_updated_rating = updated_rating(a_rating, a_expected_score, a_actual_score)
+    b_updated_rating = updated_rating(b_rating, 1 - a_expected_score, 1 - a_actual_score)
+    return a_updated_rating, b_updated_rating
   end
 
   def self.expected_score(player_rating, opponent_rating)
@@ -39,11 +22,15 @@ class EloRating
 
   private
 
-  def k_factor(rating)
-    @k_factor.call(rating)
+  def a_score(result)
+    {
+      0 => 0.5, # draw
+      1 => 1,   # a wins
+      2 => 0    # b wins
+    }[result]
   end
 
   def updated_rating(rating, expected_score, actual_score)
-    (rating + k_factor(rating) * (actual_score - expected_score)).to_i
+    (rating + k_factor * (actual_score - expected_score)).to_i
   end
 end
