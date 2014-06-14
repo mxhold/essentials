@@ -55,13 +55,13 @@ describe Comparison do
     end
 
     it 'returns item1 if the result is 1' do
-      item = Item.new(name: 'Piano')
+      item = Item.new
       comparison = Comparison.new(item1: item, result: 1)
       expect(comparison.winning_item).to eql item
     end
 
     it 'returns item2 if the result is 2' do
-      item = Item.new(name: 'Piano')
+      item = Item.new
       comparison = Comparison.new(item2: item, result: 2)
       expect(comparison.winning_item).to eql item
     end
