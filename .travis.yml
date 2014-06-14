@@ -4,3 +4,4 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 env:
   - CODECLIMATE_REPO_TOKEN=a5f82768a217627e46bef3c9ca1b0f35670f74e95decee1cd04ecd8df8249509
+bundler_args: --without development
