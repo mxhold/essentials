@@ -14,11 +14,11 @@ group :development do
   gem 'spring'
   gem 'guard'
   gem 'guard-rspec', '~> 4.2.8'
+  gem 'pry'
+  gem 'pry-debugger'
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-debugger'
   gem 'rspec-rails', '~> 3.0.0'
 end
 
